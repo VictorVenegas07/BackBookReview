@@ -7,6 +7,7 @@ on:
 
 env:
   TAG: ${{ github.sha }}
+  IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/pruebalibros
 
 jobs:
   build-and-deploy:
@@ -23,10 +24,11 @@ jobs:
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
     - name: Build and push Docker image
-      uses: docker/build-push-action@v1
+      uses: docker/build-push-action@v5
       with:
+        context: .
         push: true
-        repository: ${{ github.repository }}
-        # tag_with_ref: true
-        # tag_with_sha: true
-        tags: ${{ secrets.IMAGE_NAME }}:${{ env.TAG }}
+        tags: |
+          ${{ env.IMAGE_NAME }}:${{ env.TAG }}
+          ${{ env.IMAGE_NAME }}:develop
+          ${{ env.IMAGE_NAME }}:latest
