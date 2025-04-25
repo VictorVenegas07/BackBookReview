@@ -5,6 +5,10 @@ on:
     branches:
       - develop
 
+permissions:
+  id-token: write
+  contents: read
+  
 env:
   TAG: ${{ github.sha }}
   IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/pruebalibros
