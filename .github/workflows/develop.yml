@@ -52,6 +52,7 @@ jobs:
         images: ${{ env.IMAGE_NAME }}:${{ env.TAG }}
       env:
         ASPNETCORE_ENVIRONMENT: ${{ secrets.ASPNETCORE_ENVIRONMENT }}
+        ASPNETCORE_HTTP_PORTS: ${{ secrets.ASPNETCORE_HTTP_PORTS }}
 
     - name: Logout from Azure
       run: |
