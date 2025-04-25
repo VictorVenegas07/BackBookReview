@@ -25,10 +25,8 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v1
       with:
-        context: .
         push: true
         repository: ${{ github.repository }}
         tag_with_ref: true
         tag_with_sha: true
-        tag: ${{ env.TAG }}
-
+        tags: ${{ env.TAG }}
