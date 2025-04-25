@@ -26,7 +26,7 @@ jobs:
       uses: docker/build-push-action@v1
       with:
         push: true
-        repository: ${{ secrets.IMAGE_NAME }}
+        repository: ${{ github.repository }}
         tag_with_ref: true
         tag_with_sha: true
-        tags: ${{ env.TAG }}
+        tags: ${{ secrets.IMAGE_NAME }}:${{ env.TAG }}
