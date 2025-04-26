@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BookReview.Domain\BookReview.Domain.csproj" />
+    <ProjectReference Include="..\BookReview.Infrastructure\BookReview.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
