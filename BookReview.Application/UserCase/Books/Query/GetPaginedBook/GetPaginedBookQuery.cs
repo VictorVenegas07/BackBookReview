@@ -31,12 +31,13 @@ public class GetPaginedBookQueryHandler : IRequestHandler<GetPaginedBookQuery, P
 
     public async Task<PaginatedResponse<GetPaginedBookResponse>> Handle(GetPaginedBookQuery request, CancellationToken cancellationToken)
     {
-       var filter = BuildFilter(request.SearchTerm, request.Category);
+       
+        var filter = BuildFilter(request.SearchTerm, request.Category);
 
 
         var orderBy = (Func<IQueryable<Book>, IOrderedQueryable<Book>>)(q => q.OrderBy(b => b.CreatedAt));
 
-        var books = await _bookRepository.GetPaginatedAsync(filter, orderBy, request.PageNumber, request.PageSize, false );
+        var books = await _bookRepository.GetPaginatedAsync(filter, orderBy, request.PageNumber, request.PageSize, false, "BookCategories.Category");
 
         var mappedData = _mapper.Map<IEnumerable<GetPaginedBookResponse>>(books.Data);
 
@@ -58,10 +59,10 @@ public class GetPaginedBookQueryHandler : IRequestHandler<GetPaginedBookQuery, P
         return response;
     }
 
-    private static Expression<Func<Book, bool>> BuildFilter(string? searchTerm = null, int? category = null)
+    private static Expression<Func<Book, bool>>? BuildFilter(string? searchTerm = null, int? category = null)
     {
         Expression<Func<Book, bool>>? filter = null;
-        if (string.IsNullOrEmpty(searchTerm))
+        if (searchTerm is not null)
         {
             filter = searchTerm != null
             ? (Expression<Func<Book, bool>>)(b => b.Title.Contains(searchTerm) || b.Author.Contains(searchTerm)
@@ -75,8 +76,6 @@ public class GetPaginedBookQueryHandler : IRequestHandler<GetPaginedBookQuery, P
                ? b => b.BookCategories.Any(c => c.CategoryId == category)
                : filter.And(b => b.BookCategories.Any(c => c.CategoryId == category));
         }
-
-        filter = b => b.BookCategories.Any(c => c.CategoryId == category);
 
      
         return filter;

@@ -67,7 +67,7 @@ public class UpdateReviewCommandHandler : IRequestHandler<UpdateReviewCommand, R
         }
 
 
-        await _reviewRepository.AddAsync(existingReview);
+        await _reviewRepository.UpdateAsync(existingReview);
 
         var response = _mapper.Map<ReviewResponse>(review);
 

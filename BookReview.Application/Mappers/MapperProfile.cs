@@ -19,7 +19,9 @@ namespace BookReview.Application.Configurations.Mapper
             CreateMap<PaginatedResponse<Domain.Entities.Book>, PaginatedResponse<GetPaginedBookResponse>>()
                 .ReverseMap();
 
-            CreateMap<Domain.Entities.Book, GetPaginedBookResponse>().ReverseMap();
+            CreateMap<Domain.Entities.Book, GetPaginedBookResponse>()
+                 .ForMember(dest => dest.Genres, opt => opt.MapFrom(src => src.BookCategories.Select(x=> x.Category.Name)))
+                .ReverseMap();
 
 
             CreateMap<Review, ReviewResponse>()
