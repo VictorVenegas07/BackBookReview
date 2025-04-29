@@ -4,6 +4,7 @@ using BookReview.Application.UserCase.Authentication.Commands.UpdatePicture;
 using BookReview.Application.UserCase.Authentication.Query.GetProfilePicture;
 using BookReview.Application.UserCase.Authentication.Query.GetUserProfile;
 using BookReview.Domain.Common.Wrappers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookReview.Api.Controllers;
@@ -19,8 +20,8 @@ public class AuthController : BaseController
     /// <param name="command">Register Request</param>
     /// <returns>Result</returns>
 
+    [AllowAnonymous]
     [HttpPost("register")]
-
     public async Task<IActionResult> Register([FromBody] RegisterUserCommand command)
     {
         var result = await Mediator.Send(command);
@@ -33,6 +34,7 @@ public class AuthController : BaseController
     /// <param name="command">Login Request</param>
     /// <returns>Result</returns>
 
+    [AllowAnonymous]
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginUserCommand command)
     {

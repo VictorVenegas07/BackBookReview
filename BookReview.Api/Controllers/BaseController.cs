@@ -12,7 +12,7 @@ namespace BookReview.Api.Controllers;
 
 [Route(BaseRoute.BaseRouteUrl)]
 [ApiController]
-//[Authorize]
+[Authorize]
 public class BaseController : ControllerBase
 {
     private IMediator _mediator = null!;
