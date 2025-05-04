@@ -1,0 +1,88 @@
+﻿@{
+    Layout = null;  // Para no usar una vista/layout por defecto
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head style="width: 100%; height: 4.1em; padding: 0; margin: 0;">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="ExportacionObras">
+    <meta name="author" content="DireccionPatrimonio">
+</head>
+
+<body style="width: 100%; padding: 0; font-family: Montserrat, sans-serif; font-weight: 400; margin: 0!important; display: flex; flex-direction: column; align-items: center;">
+
+    <div style="width: 600px; margin: 0 !important;">
+        <div id="wrapper" style="padding-top: 1em;">
+            <img src="cid:logoMin" alt="Logo">
+        </div>
+
+        <div id="wrapper" style="margin-left: 1em; justify-items: right; text-align:right;">
+            <img src="cid:sipa" alt="Sipa">
+        </div>
+
+        <div id="wrapper">
+            <img src="cid:vigias" alt="Vigias">
+        </div>
+
+        <div id="titulo-condiciones" style="padding: 1em .5em; font-size: 1.5em; font-family: Montserrat, sans-serif; font-weight: 700; color: #00373B; width:90%;">
+            <span>!SE HA REGISTRADO UNA SOLICITUD!</span>
+        </div>
+
+        <div id="cont1" style="padding: 0 .5em; font-family: Montserrat, sans-serif; color:#000000; line-height: 1.2em;">
+            <div style="padding: 0 .5em; max-width: 866px; font-size: 14px;">
+                <span>
+                    Señor(a) <b>@Model.Username</b>:
+                    <br><br>
+                </span>
+
+                <span>
+                    Usted ha enviado al Ministerio de Cultura la siguiente solicitud de autorización de exportación de bienes culturales:
+                    <br><br>
+                </span>
+
+                <!-- Tabla de Bienes -->
+                <div id="variable-adicional" style="padding: 1em .5em; font-family: Montserrat, sans-serif; color:#000000; line-height: 1.2em; font-size: 12px;">
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 1em;">
+                        <thead>
+                            <tr>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Número Radicado</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Título</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var articulo in Model.Articles)
+                            {
+                                <tr>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">@articulo.NumeroRadicado</td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">@articulo.Titulo</td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">@articulo.Estado</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <span>
+                    Total de registros: <b>@Model.TotalArticles</b>
+                    <br><br>
+                </span>
+            </div>
+        </div>
+
+        <div id="cont2" style="padding: 0.5em .5em 0; font-family: Montserrat, sans-serif; color:#000000; line-height: 1.2em;">
+            <div style="padding: 0 .5em; padding-bottom: 0.5em; max-width: 866px; font-size: 12px;">
+                <span style="margin-top: 0; display: flex; justify-items: center; align-items: center; padding-top: 1em;">
+                    <span style="margin-top: 0; font-size: 11px; font-family: Montserrat, sans-serif; color: #000000;">
+                        Por favor, no respondas directamente este correo electrónico. Este mensaje se envió desde una dirección que no acepta respuestas. Si tienes más preguntas o necesitas asistencia, comunicate con el siguiente numero (601) 3424100
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
