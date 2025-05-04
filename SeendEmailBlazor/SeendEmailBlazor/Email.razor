@@ -1,9 +1,0 @@
-﻿// EmailTemplates/Components/WelcomeEmail.razor
-@page "/"
-<h2>Hola @Name!</h2>
-<p>Gracias por registrarte. Tu código de confirmación es: <strong>@ConfirmationCode</strong></p>
-
-@code {
-    [Parameter] public string Name { get; set; }
-    [Parameter] public string ConfirmationCode { get; set; }
-}
